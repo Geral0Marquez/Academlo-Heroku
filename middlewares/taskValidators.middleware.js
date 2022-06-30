@@ -20,8 +20,8 @@ const checkResult = (req, res, next) => {
 
 //fields: Title, userId
 const createTaskValidators = [
-  body('title').notEmpty().withMessage('Title cannot be empty'),
-  body('userId').notEmpty().withMessage('Must provide a valid userId'),
+  body('title').notEmpty().withMessage('title cannot be empty'),
+  body('userId').notEmpty().withMessage('userId must be a number'),
 
   checkResult,
 ];

@@ -24,7 +24,7 @@ const createTask = catchAsync(async (req, res, next) => {
 	const newTask = await Task.create({
 	  title,
 	  userId,
-	  startDate: new Date(startDate),
+	  startDate: new Date(),
 	  limitDate,
 	});
   
@@ -43,12 +43,13 @@ const createTask = catchAsync(async (req, res, next) => {
 	if (task.status === 'active') {
 	  
 	await task.update({ finishDate });
-	let limitDate = new Date(task.dataValues.limitDate); // la fecha limite establecida para realizar la tarea
 	let endDateUser = new Date(finishDate); // la fecha estipulada en req.body del usuario
+	let limitDate = new Date(task.limitDate); // la fecha limite establecida para realizar la tarea
+
 	  
 		// comparar si la fecha entregada por el usuario es menor a la fecha limite(estado completado)
 		//podemos usar valueof() o toString()
-	   if(endDateUser .valueOf() < limitDate.valueOf()) {
+	   if(endDateUser.valueOf() < limitDate.valueOf()) {
 		res.status(201).json({
 		  status: 'complete',
 		  task,
