@@ -1,25 +1,19 @@
 const { db, DataTypes } = require('../utils/database.util')
 
-
 //model bien
 
-const User = db.define('user', {
+const Game = db.define('game', {
     id: {
         primaryKey: true,
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false
     },
-    name: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    password: {
+    genre: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -27,7 +21,7 @@ const User = db.define('user', {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'active'
-    },
+    }
 })
 
-module.exports = { User }
+module.exports = { Game }

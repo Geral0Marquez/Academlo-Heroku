@@ -1,6 +1,5 @@
 const { body, validationResult } = require('express-validator');
 
-//utils
 const { AppError } = require('../utils/appError.util');
 
 const checkResult = (req, res, next) => {
@@ -18,16 +17,15 @@ const checkResult = (req, res, next) => {
 	next();
 };
 
-//fields: Name, email, password
 const createUserValidators = [
 	body('name').notEmpty().withMessage('Name cannot be empty'),
 	body('email').isEmail().withMessage('Must provide a valid email'),
 	body('password')
-	  .isLength({ min: 6 })
-	  .withMessage('Password must be at least 8 characters long')
-	  .isAlphanumeric()
-	  .withMessage('Password must contain letters and numbers'),
+		.isLength({ min: 6 })
+		.withMessage('Password must be at least 8 characters long')
+		.isAlphanumeric()
+		.withMessage('Password must contain letters and numbers'),
 	checkResult,
-  ];
-  
-  module.exports = { createUserValidators };
+];
+
+module.exports = { createUserValidators };
