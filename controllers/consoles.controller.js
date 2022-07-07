@@ -1,7 +1,7 @@
 //model
 const { Console } = require('../models/console.model');
 const { Game } = require('../models/game.model');
-const { GamesInConsole } = require('../models/gamesInConsole.model');
+
 
 //utils
 const { catchAsync } = require('../utils/catchAsync.util');
