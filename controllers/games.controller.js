@@ -55,7 +55,7 @@ const gameReviews = catchAsync(async (req, res, next) => {
     comment,
   });
 
-  res.status(201).json({
+  res.status(20).json({
     status: 'success',
     newReview,
   });

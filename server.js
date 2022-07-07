@@ -22,8 +22,8 @@ Game.hasMany(Review, { foreignKey: 'gameId' });
 Review.belongsTo(Game);
 
 //varios juegos diponibles en varias consolas
-Game.belongsToMany(Console, { through: 'GamesInConsole' });
-Console.belongsToMany(Game, { through: 'GamesInConsole' });
+Game.belongsToMany(Console, { through: 'gamesInConsole' });
+Console.belongsToMany(Game, { through: 'gamesInConsole' });
 
 
 db.authenticate()

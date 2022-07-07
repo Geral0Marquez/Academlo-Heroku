@@ -6,7 +6,7 @@ const { Game } = require('./game.model');
 
 //relations
 
-const GamesInConsole = db.define('GamesInConsole', {
+const GamesInConsole = db.define('gamesInConsole', {
   id: {
     primaryKey: true,
     autoIncrement: true,
