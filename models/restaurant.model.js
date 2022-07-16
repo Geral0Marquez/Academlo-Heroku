@@ -1,23 +1,22 @@
+
 const { db, DataTypes } = require('../utils/database.util');
 
+
 // proyect
-const Review = db.define('review', {
+
+const Restaurant = db.define('restaurant', {
   id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false
   },
-  userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-  },
-  comment: {
+  name: {
       type: DataTypes.STRING,
       allowNull: false
   },
-  restaurantId: {
-      type: DataTypes.INTEGER,
+  address: {
+      type: DataTypes.STRING,
       allowNull: false
   },
   rating: {
@@ -31,4 +30,4 @@ const Review = db.define('review', {
   }
 })
 
-module.exports = { Review }
+module.exports = { Restaurant }

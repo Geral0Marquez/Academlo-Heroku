@@ -1,26 +1,28 @@
 const { db, DataTypes } = require('../utils/database.util')
 
-
 //proyect
 
-const User = db.define('user', {
+const Order = db.define('order', {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
     },
-    name: {
-      type: DataTypes.STRING,
+    mealId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
+    totalPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     status: {
@@ -28,12 +30,6 @@ const User = db.define('user', {
       allowNull: false,
       defaultValue: 'active',
     },
-    rol: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'normal',
-    },
   });
   
-  module.exports = { User };
-  
+  module.exports = { Order };

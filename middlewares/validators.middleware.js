@@ -2,6 +2,8 @@ const { body, validationResult } = require('express-validator');
 
 const { AppError } = require('../utils/appError.util');
 
+
+
 const checkResult = (req, res, next) => {
 	const errors = validationResult(req);
 
@@ -17,15 +19,59 @@ const checkResult = (req, res, next) => {
 	next();
 };
 
+
 const createUserValidators = [
-	body('name').notEmpty().withMessage('Name cannot be empty'),
+	body('username').notEmpty().withMessage('Name cannot be empty'),
 	body('email').isEmail().withMessage('Must provide a valid email'),
 	body('password')
 		.isLength({ min: 6 })
-		.withMessage('Password must be at least 8 characters long')
+		.withMessage('Password must be at least 6 characters long')
 		.isAlphanumeric()
 		.withMessage('Password must contain letters and numbers'),
 	checkResult,
 ];
 
-module.exports = { createUserValidators };
+const createMealsValidators = [
+	body('name').notEmpty().withMessage('This field cannot be empty'),
+	body('price')
+	  .notEmpty()
+	  .withMessage('This field cannot be empty')
+	  .isNumeric()
+	  .withMessage('This field must containt a number'),
+  ];
+
+
+const createOrderValidators = [
+	body('mealId')
+	  .notEmpty()
+	  .withMessage('This field cannot be empty')
+	  .isNumeric()
+	  .withMessage('This field must containt a number'),
+	body('quantity')
+	  .notEmpty()
+	  .withMessage('This field cannot be empty')
+	  .isNumeric()
+	  .withMessage('This field must containt a number'),
+	checkResult,
+];
+  
+
+const createRestaurantValidators = [
+	body('name').notEmpty().withMessage('This field cannot be empty'),
+	body('address').notEmpty().withMessage('This field cannot be empty'),
+	body('rating')
+	  .notEmpty()
+	  .withMessage('This field cannot be empty')
+	  .isNumeric()
+	  .withMessage('This field must containt a number'),
+];
+  
+  
+
+  module.exports = {
+	createUserValidators,
+	createMealsValidators,
+	createRestaurantValidators,
+	createOrderValidators,
+  };
+  

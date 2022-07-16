@@ -5,25 +5,30 @@ const { app } = require('./app');
 const { db } = require('./utils/database.util');
 
 //models
-const { User } = require('./models/user.model');
-const { Review } = require('./models/review.model');
-const { Game } = require('./models/game.model');
-const { Console } = require('./models/console.model');
-
+const { Meal } = require('./models/meal.model');
+  const { Order } = require('./models/order.model');
+  const { Restaurant } = require('./models/restaurant.model');
+  const { Review } = require('./models/review.model');
+  const { User } = require('./models/user.model');
+  
 
 // Relations
 
-// users es de 1 a muchos comentarios
+Restaurant.hasMany(Review, { foreignKey: 'restaurantId' });
+Review.belongsTo(Restaurant);
+
+Restaurant.hasMany(Meal, { foreignKey: 'restaurantId' });
+Meal.belongsTo(Restaurant);
+
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User);
 
-//por cada juego hay varios comentarios
-Game.hasMany(Review, { foreignKey: 'gameId' });
-Review.belongsTo(Game);
+User.hasMany(Order, { foreignKey: 'userId' });
+Order.belongsTo(User);
 
-//varios juegos diponibles en varias consolas
-Game.belongsToMany(Console, { through: 'gamesInConsole' });
-Console.belongsToMany(Game, { through: 'gamesInConsole' });
+Meal.hasOne(Order, { foreignKey: 'mealId' });
+Order.belongsTo(Meal);
+
 
 
 db.authenticate()

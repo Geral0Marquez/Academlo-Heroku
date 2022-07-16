@@ -55,6 +55,29 @@ const protectUserAccount = (req, res, next) => {
   }
 
   next();
+
 };
 
-module.exports = { protectSession, protectUserAccount };
+const checkSession = (req, res, next) => {
+  const { sessionUser, order } = req;
+
+  if (sessionUser.id !== order.userId) {
+    return next(new AppError('access denied', 403));
+  }
+  next();
+};
+
+
+const isAdmin = (req, res, next) => {
+  const { sessionUser } = req;
+
+  if (sessionUser.rol !== 'admin') {
+    return next(
+      new AppError('request denied', 403)
+    );
+  }
+
+  next();
+};
+
+module.exports = { protectSession, protectUserAccount, isAdmin,checkSession};
